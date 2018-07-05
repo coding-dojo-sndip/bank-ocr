@@ -47,4 +47,10 @@ public class OcrTest {
 		boolean validNumber = Ocr.isBankAccountNumberValid("457508023");
 		assertThat(validNumber).isTrue();
 	}
+	
+	@Test
+	public void test_check_err_ill_1() throws IOException {
+		boolean validNumber = Ocr.isBankAccountNumberValid("457508023");
+		assertThat(validNumber).isTrue();
+	}
 }

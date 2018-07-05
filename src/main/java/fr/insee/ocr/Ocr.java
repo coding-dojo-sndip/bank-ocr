@@ -25,8 +25,8 @@ public class Ocr {
 		return parseAll(fileName).get(0);
 	}
 	
-	public static boolean isBankAccountNumberValid(String bankAccountNumber) {
-		return checksum(bankAccountNumber) % 11 == 0;
+	public static boolean isBankAccountNumberValid(String number) {
+		return BankAccountNumber.of(number).status() == Status.OK;
 	}
 	
 	private static String readDigits(String line1, String line2, String line3) {
@@ -48,15 +48,6 @@ public class Ocr {
 			}
 		}
 		return digits.toString();
-	}
-
-	private static int checksum(String bankAccountNumber) {
-		int checksum = 0;
-		for (int index = 0; index < 9; index ++) {
-			int digit = bankAccountNumber.charAt(index);
-			checksum += digit * (digit - index);
-		}
-		return checksum;
 	}
 	
 	private static char[][] digitArrayAtIndex(char[][] digitsArray, int index) {
