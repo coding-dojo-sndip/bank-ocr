@@ -10,8 +10,14 @@ public class OcrTest {
 
 	
 	@Test
-	public void test_digits() throws IOException {
-		String digits = Ocr.parse("digits.txt");
-		assertThat(digits).isEqualTo("0123456789");
+	public void test_digits_1() throws IOException {
+		String digits = Ocr.parseOne("src/test/resources/digits-1.txt");
+		assertThat(digits).isEqualTo("123456789");
+	}
+	
+	@Test
+	public void test_digits_2() throws IOException {
+		String digits = Ocr.parseOne("src/test/resources/digits-2.txt");
+		assertThat(digits).isEqualTo("012345678");
 	}
 }
