@@ -22,11 +22,7 @@ public class Ocr {
 	}
 	
 	public static String parseOne(String fileName) throws IOException {
-		List<String> lines = Files.readAllLines(Paths.get(fileName));
-		String line1 = lines.get(0);
-		String line2 = lines.get(1);
-		String line3 = lines.get(2);
-		return readDigits(line1, line2, line3);
+		return parseAll(fileName).get(0);
 	}
 	
 	private static String readDigits(String line1, String line2, String line3) {
