@@ -28,6 +28,10 @@ public class Ocr {
 		return parseAll(fileName).get(0);
 	}
 	
+	public static void printLog(String fileName) throws IOException {
+		parseAll(fileName).forEach(b -> System.out.println(b.getNumber() + (b.status() == Status.OK ? "" : " " + b.status())));
+	}
+	
 	private static String readDigits(String line1, String line2, String line3) {
 		char[][] digitsArray = new char[3][27];
 		for(int n = 0; n < 27; n ++) {

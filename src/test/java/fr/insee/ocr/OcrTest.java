@@ -46,5 +46,11 @@ public class OcrTest {
 	
 	@Test
 	public void test_check_err_ill_1() throws IOException {
+		List<BankAccountNumber> digits = Ocr.parseAll("src/test/resources/digits-4.txt");
+		assertThat(digits).hasSize(4);
+		assertThat(digits.get(0).status()).isEqualTo(Status.ERR);
+		assertThat(digits.get(1).status()).isEqualTo(Status.ERR);
+		assertThat(digits.get(2).status()).isEqualTo(Status.ILL);
+		assertThat(digits.get(3).status()).isEqualTo(Status.OK);
 	}
 }
