@@ -34,4 +34,24 @@ public class BankAccountNumber {
 		}
 		return checksum;
 	}
+
+	public String getNumber() {
+		return number;
+	}
+
+	@Override
+	public int hashCode() {
+		return number.hashCode();
+	}
+
+	@Override
+	public boolean equals(Object object) {
+		if(object instanceof BankAccountNumber) {
+			BankAccountNumber other = (BankAccountNumber) object;
+			return this.number.equals(other.number);
+		}
+		return false;
+	}
+	
+	
 }

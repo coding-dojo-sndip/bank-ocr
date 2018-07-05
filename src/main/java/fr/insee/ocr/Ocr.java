@@ -5,11 +5,12 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 
 public class Ocr {
 	
-	public static List<String> parseAll(String fileName) throws IOException {
+	public static List<BankAccountNumber> parseAll(String fileName) throws IOException {
 		List<String> allDigits = new ArrayList<>();
 		List<String> lines = Files.readAllLines(Paths.get(fileName));
 		for(int n = 0; n < lines.size(); n += 4) {
@@ -18,15 +19,13 @@ public class Ocr {
 			String line3 = lines.get(n + 2);
 			allDigits.add(readDigits(line1, line2, line3));
 		}
-		return allDigits;
+		return allDigits.stream()
+			.map(BankAccountNumber::of)
+			.collect(Collectors.toList());
 	}
 	
-	public static String parseOne(String fileName) throws IOException {
+	public static BankAccountNumber parseOne(String fileName) throws IOException {
 		return parseAll(fileName).get(0);
-	}
-	
-	public static boolean isBankAccountNumberValid(String number) {
-		return BankAccountNumber.of(number).status() == Status.OK;
 	}
 	
 	private static String readDigits(String line1, String line2, String line3) {
