@@ -62,28 +62,26 @@ public class Digits {
 		" _|"
 	;
 	
-	public static boolean isEqualTo(char[][] digitArray, String digitString) {
-		for (int i = 0; i < 3; i ++) {
-			for (int j = 0; j < 3; j ++) {
-				if(digitArray[i][j] != digitString.charAt(i + j)) {
-					return false;
-				}
+	public static boolean areSame(char[][] digitArray, String digitString) {
+		for (int index = 0; index < 9; index ++) {
+			if(digitArray[index / 3][index % 3] != digitString.charAt(index)) {
+				return false;
 			}			
 		}
 		return true;
 	}
 	
 	public static int numberFromDigitArray(char[][] digitArray) {
-		if(isEqualTo(digitArray, D0)) return 0;
-		if(isEqualTo(digitArray, D1)) return 1;
-		if(isEqualTo(digitArray, D2)) return 2;
-		if(isEqualTo(digitArray, D3)) return 3;
-		if(isEqualTo(digitArray, D4)) return 4;
-		if(isEqualTo(digitArray, D5)) return 5;
-		if(isEqualTo(digitArray, D6)) return 6;
-		if(isEqualTo(digitArray, D7)) return 7;
-		if(isEqualTo(digitArray, D8)) return 8;
-		if(isEqualTo(digitArray, D9)) return 9;
+		if(areSame(digitArray, D0)) return 0;
+		if(areSame(digitArray, D1)) return 1;
+		if(areSame(digitArray, D2)) return 2;
+		if(areSame(digitArray, D3)) return 3;
+		if(areSame(digitArray, D4)) return 4;
+		if(areSame(digitArray, D5)) return 5;
+		if(areSame(digitArray, D6)) return 6;
+		if(areSame(digitArray, D7)) return 7;
+		if(areSame(digitArray, D8)) return 8;
+		if(areSame(digitArray, D9)) return 9;
 		return -1;
 	}
 }

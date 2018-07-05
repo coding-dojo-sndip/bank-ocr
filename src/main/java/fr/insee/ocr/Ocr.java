@@ -39,8 +39,13 @@ public class Ocr {
 		StringBuilder digits = new StringBuilder();
 		for(int index = 0; index < 9; index ++) {
 			char[][] oneDigitArray = digitArrayAtIndex(digitsArray, index);
-			int digit = numberAtIndex(oneDigitArray);
-			digits.append(digit);
+			int digit = Digits.numberFromDigitArray(oneDigitArray);
+			if(digit >= 0) {
+				digits.append(digit);
+			}
+			else {
+				digits.append("?");
+			}
 		}
 		return digits.toString();
 	}
@@ -62,39 +67,5 @@ public class Ocr {
 			}	
 		}
 		return oneDigitArray;
-	}
-
-	private static int numberOfNonEmptyChars(char[][] oneDigitArray) {
-		int n = 0;
-		for(int i = 0; i < 3; i ++) {
-			for(int j = 0; j < 3; j ++) {
-				if(oneDigitArray[i][j] != ' ') {
-					n ++;
-				}
-			}			
-		}
-		return n;
-	}
-	
-	private static int numberAtIndex(char[][] oneDigitArray) {
-		switch(numberOfNonEmptyChars(oneDigitArray)) {
-			case 7:
-				return 8;
-			case 6:
-				if(oneDigitArray[1][1] == ' ') return 0;
-				if(oneDigitArray[2][0] == ' ') return 9;
-				return 6;
-			case 5:
-				if(oneDigitArray[1][2] == ' ') return 5;
-				if(oneDigitArray[2][2] == ' ') return 2;
-				return 3;
-			case 4:
-				return 4;
-			case 3:
-				return 7;
-			case 2:
-				return 1;
-		}
-		return -1;
 	}
 }
